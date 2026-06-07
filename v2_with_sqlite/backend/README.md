@@ -1,11 +1,10 @@
 # Backend — v2 (SQLite)
 
-Django REST API for the AI Solutions platform. Uses SQLite as the database — no database server setup required.
+Django REST API for the AI Solutions platform. Uses SQLite — no database server required.
 
 ## Prerequisites
 
 - Python 3.10+
-- `pip` or `pip3`
 
 ## 1. Create & activate virtual environment
 
@@ -23,7 +22,7 @@ pip install -r requirements.txt
 
 ## 3. Apply migrations
 
-SQLite creates the database file automatically — no setup needed.
+SQLite creates the database file automatically on first run.
 
 ```bash
 python manage.py migrate
@@ -41,7 +40,7 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-API is available at **http://localhost:8000/api/**
+API available at **http://localhost:8000/api/**
 Django admin at **http://localhost:8000/admin/**
 
 ## Useful commands
