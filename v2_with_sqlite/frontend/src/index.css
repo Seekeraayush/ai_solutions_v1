@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans bg-[#F8FAFC] text-navy-900 overflow-x-hidden;
+  }
+  
+  /* Smooth scroll selection */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Styles */
+  .glass-nav {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+  }
+  
+  .glass-card-dark {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  
+  /* Buttons */
+  .btn-primary {
+    @apply px-6 py-3 bg-primary text-white font-medium rounded-full shadow-lg shadow-blue-500/20 hover:bg-primary-dark hover:shadow-blue-500/35 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 bg-white text-navy-900 border border-navy-200 font-medium rounded-full hover:bg-navy-50 hover:border-navy-300 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer;
+  }
+  
+  .btn-admin {
+    @apply px-5 py-2.5 bg-navy-900 text-white font-medium rounded-lg hover:bg-navy-800 transition-all duration-300 cursor-pointer;
+  }
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(3deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.animate-float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Hide default Vite page styles root container override */
+#root {
+  display: block !important;
+  text-align: left !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  border-inline: none !important;
+  min-height: auto !important;
+  margin: 0 !important;
+}
+
