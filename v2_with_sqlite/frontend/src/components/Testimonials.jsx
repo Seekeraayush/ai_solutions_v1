@@ -41,7 +41,6 @@ const Testimonials = () => {
     timerRef.current = setInterval(nextSlide, 6000);
   }, [nextSlide]);
 
-  // Start autoplay once data is loaded
   useEffect(() => {
     if (testimonials.length < 2) return;
     timerRef.current = setInterval(nextSlide, 5000);
@@ -52,12 +51,12 @@ const Testimonials = () => {
     return (
       <div className="py-20 px-6 max-w-4xl mx-auto text-center">
         <div className="mb-10">
-          <span className="text-primary font-semibold text-sm tracking-wider uppercase">Testimonials</span>
-          <h2 className="font-outfit font-extrabold text-navy-900 text-3xl md:text-4xl mt-1">What Our Clients Say</h2>
+          <span className="text-violet-400 font-grotesk text-xs font-semibold uppercase tracking-widest">Testimonials</span>
+          <h2 className="font-grotesk font-bold text-[#F0F0FF] text-3xl md:text-4xl mt-2">What Our Clients Say</h2>
         </div>
         <div className="flex justify-center gap-3 py-16">
           {[...Array(3)].map((_, i) => (
-            <div key={i} className="w-2.5 h-2.5 rounded-full bg-navy-200 animate-pulse" style={{ animationDelay: `${i * 0.15}s` }} />
+            <div key={i} className="w-2.5 h-2.5 rounded-full bg-violet-500/30 animate-pulse" style={{ animationDelay: `${i * 0.15}s` }} />
           ))}
         </div>
       </div>
@@ -71,8 +70,8 @@ const Testimonials = () => {
   return (
     <div className="py-20 px-6 max-w-4xl mx-auto text-center relative">
       <div className="mb-10">
-        <span className="text-primary font-semibold text-sm tracking-wider uppercase">Testimonials</span>
-        <h2 className="font-outfit font-extrabold text-navy-900 text-3xl md:text-4xl mt-1">
+        <span className="text-violet-400 font-grotesk text-xs font-semibold uppercase tracking-widest">Testimonials</span>
+        <h2 className="font-grotesk font-bold text-[#F0F0FF] text-3xl md:text-4xl mt-2">
           What Our Clients Say
         </h2>
       </div>
@@ -81,14 +80,14 @@ const Testimonials = () => {
         {/* Navigation Buttons */}
         <button
           onClick={() => { prevSlide(); resetAutoplay(); }}
-          className="absolute left-0 md:-left-8 p-3 rounded-full bg-white border border-navy-100 text-navy-700 hover:text-primary hover:shadow-md cursor-pointer transition-all z-10"
+          className="absolute left-0 md:-left-8 p-3 rounded-full bg-white/[0.05] border border-white/10 text-[#94A3B8] hover:border-violet-500/40 hover:text-[#F0F0FF] cursor-pointer transition-all z-10"
         >
           <ChevronLeft size={20} />
         </button>
 
         <button
           onClick={() => { nextSlide(); resetAutoplay(); }}
-          className="absolute right-0 md:-right-8 p-3 rounded-full bg-white border border-navy-100 text-navy-700 hover:text-primary hover:shadow-md cursor-pointer transition-all z-10"
+          className="absolute right-0 md:-right-8 p-3 rounded-full bg-white/[0.05] border border-white/10 text-[#94A3B8] hover:border-violet-500/40 hover:text-[#F0F0FF] cursor-pointer transition-all z-10"
         >
           <ChevronRight size={20} />
         </button>
@@ -111,9 +110,9 @@ const Testimonials = () => {
                 if (offset.x < -50) { nextSlide(); resetAutoplay(); }
                 else if (offset.x > 50) { prevSlide(); resetAutoplay(); }
               }}
-              className="glass-card p-8 md:p-10 rounded-3xl cursor-grab active:cursor-grabbing text-left border border-white/50 relative"
+              className="glass-card p-8 md:p-10 rounded-2xl cursor-grab active:cursor-grabbing text-left relative"
             >
-              <Quote className="absolute right-8 top-8 text-primary/10 w-16 h-16 pointer-events-none" />
+              <Quote className="absolute right-8 top-8 text-violet-500/20 w-16 h-16 pointer-events-none" />
 
               {/* Star Rating */}
               <div className="flex gap-1 mb-4">
@@ -123,7 +122,7 @@ const Testimonials = () => {
               </div>
 
               {/* Review Text */}
-              <p className="text-navy-700 text-base md:text-lg leading-relaxed mb-6 italic">
+              <p className="text-[#94A3B8] text-base md:text-lg leading-relaxed mb-6 italic">
                 "{active.content}"
               </p>
 
@@ -133,14 +132,12 @@ const Testimonials = () => {
                   <img
                     src={imgSrc(active.image)}
                     alt={active.name}
-                    className="w-12 h-12 rounded-full object-cover border-2 border-primary/20 shrink-0"
+                    className="w-12 h-12 rounded-full object-cover border-2 border-violet-500/30 shrink-0"
                   />
                 )}
                 <div>
-                  <h4 className="font-outfit font-bold text-navy-900 text-sm">{active.name}</h4>
-                  <p className="text-xs text-navy-500">
-                    <span className="font-semibold text-primary">{active.company}</span>
-                  </p>
+                  <h4 className="font-grotesk font-bold text-[#F0F0FF] text-sm">{active.name}</h4>
+                  <p className="text-xs text-violet-400">{active.company}</p>
                 </div>
               </div>
             </motion.div>
@@ -156,7 +153,9 @@ const Testimonials = () => {
               key={i}
               onClick={() => { resetAutoplay(); setDirection(i > index ? 1 : -1); setIndex(i); }}
               className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                i === index ? 'w-6 bg-primary' : 'w-2 bg-navy-200 hover:bg-navy-300'
+                i === index
+                  ? 'w-6 bg-gradient-to-r from-violet-500 to-cyan-400'
+                  : 'w-2 bg-white/10 hover:bg-white/20'
               }`}
             />
           ))}

@@ -16,9 +16,9 @@ const ServicesTab = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center py-32 gap-3 text-slate-400">
-        <Loader2 size={28} className="animate-spin text-blue-500" />
-        <p className="text-xs font-semibold uppercase tracking-widest">Loading…</p>
+      <div className="flex flex-col items-center justify-center py-32 gap-3 text-[#94A3B8]">
+        <Loader2 size={28} className="animate-spin text-violet-400" />
+        <p className="text-xs font-grotesk font-semibold uppercase tracking-widest">Loading…</p>
       </div>
     );
   }
@@ -36,14 +36,14 @@ const ServicesTab = () => {
           <motion.div key={sv.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <Card className="p-5">
               <div className="flex items-start justify-between mb-3">
-                <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-violet-500/15 text-violet-400 flex items-center justify-center">
                   <Zap size={18} />
                 </div>
                 <ItemActions onEdit={() => openEdit(sv)} onDelete={() => handleDelete(sv.id)} />
               </div>
-              <h3 className="font-outfit font-bold text-slate-900 text-sm mb-1">{sv.title}</h3>
-              <p className="text-slate-500 text-xs line-clamp-3">{sv.description}</p>
-              <p className="text-[10px] text-slate-400 mt-2">Icon: <span className="text-slate-600 font-semibold">{sv.icon}</span></p>
+              <h3 className="font-grotesk font-bold text-[#F0F0FF] text-sm mb-1">{sv.title}</h3>
+              <p className="text-[#94A3B8] text-xs line-clamp-3">{sv.description}</p>
+              <p className="text-[10px] text-[#64748B] mt-2">Icon: <span className="text-[#94A3B8] font-semibold">{sv.icon}</span></p>
             </Card>
           </motion.div>
         ))}

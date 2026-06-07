@@ -17,9 +17,9 @@ const GalleryTab = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center py-32 gap-3 text-slate-400">
-        <Loader2 size={28} className="animate-spin text-blue-500" />
-        <p className="text-xs font-semibold uppercase tracking-widest">Loading…</p>
+      <div className="flex flex-col items-center justify-center py-32 gap-3 text-[#94A3B8]">
+        <Loader2 size={28} className="animate-spin text-violet-400" />
+        <p className="text-xs font-grotesk font-semibold uppercase tracking-widest">Loading…</p>
       </div>
     );
   }
@@ -36,17 +36,17 @@ const GalleryTab = () => {
         {galleryItems.map(item => (
           <motion.div key={item.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <Card className="overflow-hidden group">
-              <div className="relative aspect-video bg-slate-100 overflow-hidden">
+              <div className="relative aspect-video bg-[#07070F] overflow-hidden">
                 <img
                   src={item.image?.startsWith('http') ? item.image : `http://localhost:8000${item.image}`}
                   alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-80"
                 />
-                <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/30 transition-colors" />
+                <div className="absolute inset-0 bg-[#07070F]/0 group-hover:bg-[#07070F]/30 transition-colors" />
               </div>
               <div className="p-4 flex items-center justify-between gap-2">
                 <div className="overflow-hidden">
-                  <p className="font-outfit font-bold text-slate-900 text-xs truncate">{item.title}</p>
+                  <p className="font-grotesk font-bold text-[#F0F0FF] text-xs truncate">{item.title}</p>
                   <Badge color="blue">{item.category_display || item.category}</Badge>
                 </div>
                 <ItemActions onEdit={() => openEdit(item)} onDelete={() => handleDelete(item.id)} />

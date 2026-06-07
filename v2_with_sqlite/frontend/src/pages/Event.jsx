@@ -61,7 +61,7 @@ const Event = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-navy-50 to-white pt-32 pb-20 px-6">
+    <div className="min-h-screen bg-[#0D0D1A] pt-32 pb-20 px-6">
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
@@ -71,18 +71,19 @@ const Event = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="font-outfit font-bold text-4xl md:text-5xl text-navy-900 mb-4">
-            Our <span className="text-primary">Events</span>
+          <span className="text-violet-400 font-grotesk text-xs font-semibold uppercase tracking-widest">Gatherings</span>
+          <h1 className="font-grotesk font-bold text-4xl md:text-5xl text-[#F0F0FF] mt-2 mb-4">
+            Our <span className="gradient-text">Events</span>
           </h1>
-          <p className="text-navy-600 text-lg max-w-2xl mx-auto">
+          <p className="text-[#94A3B8] text-lg max-w-2xl mx-auto">
             Join us for networking, learning, and innovation. Explore our upcoming events and past experiences.
           </p>
         </motion.div>
 
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-24 gap-3 text-navy-400">
-            <Loader2 size={32} className="animate-spin text-primary" />
-            <p className="text-sm font-semibold uppercase tracking-widest">Loading events…</p>
+          <div className="flex flex-col items-center justify-center py-24 gap-3 text-[#94A3B8]">
+            <Loader2 size={32} className="animate-spin text-violet-400" />
+            <p className="text-sm font-grotesk font-semibold uppercase tracking-widest">Loading events…</p>
           </div>
         ) : (
           <>
@@ -94,10 +95,10 @@ const Event = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-8 py-3 rounded-full font-semibold transition-all duration-300 capitalize ${
+                  className={`px-8 py-3 rounded-full font-grotesk font-semibold transition-all duration-300 capitalize text-sm ${
                     activeTab === tab
-                      ? 'bg-primary text-white shadow-lg shadow-blue-500/30'
-                      : 'bg-white border-2 border-navy-200 text-navy-700 hover:border-primary'
+                      ? 'bg-gradient-to-r from-violet-600 to-cyan-500 text-white shadow-glow-sm'
+                      : 'bg-white/[0.05] border border-white/10 text-[#94A3B8] hover:border-violet-500/40 hover:text-[#F0F0FF]'
                   }`}
                 >
                   {tab === 'upcoming' ? 'Upcoming' : 'Past'} Events ({filteredEvents[tab].length})
@@ -114,21 +115,27 @@ const Event = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="group bg-white rounded-2xl overflow-hidden border border-navy-100 hover:border-primary hover:shadow-xl transition-all duration-300"
+                    className="group glass-card rounded-2xl overflow-hidden hover:border-violet-500/40 transition-all duration-300"
                   >
                     {/* Event Image */}
-                    <div className="relative h-48 overflow-hidden bg-gradient-to-br from-navy-900 to-primary">
+                    <div className="relative h-48 overflow-hidden bg-gradient-to-br from-[#1A1A2E] to-[#07070F]">
                       {imgSrc(event.image) && (
                         <img
                           src={imgSrc(event.image)}
                           alt={event.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 opacity-70"
                         />
                       )}
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300" />
-                      {isUpcoming(event.date) && (
-                        <div className="absolute top-4 right-4 bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold">
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D1A]/80 via-transparent to-transparent" />
+
+                      {isUpcoming(event.date) ? (
+                        <div className="absolute top-4 right-4 bg-violet-500/20 text-violet-300 border border-violet-500/30 px-4 py-1 rounded-full text-xs font-grotesk font-semibold backdrop-blur-sm">
                           Upcoming
+                        </div>
+                      ) : (
+                        <div className="absolute top-4 right-4 bg-white/[0.08] text-[#94A3B8] border border-white/10 px-4 py-1 rounded-full text-xs font-grotesk font-semibold backdrop-blur-sm">
+                          Past
                         </div>
                       )}
                     </div>
@@ -136,24 +143,24 @@ const Event = () => {
                     {/* Event Content */}
                     <div className="p-6">
                       <h3
-                        className="text-xl font-bold text-navy-900 mb-3 group-hover:text-primary transition-colors cursor-pointer"
+                        className="text-xl font-grotesk font-bold text-[#F0F0FF] mb-3 group-hover:text-violet-300 transition-colors cursor-pointer"
                         onClick={() => handleEventClick(event)}
                       >
                         {event.title}
                       </h3>
-                      <p className="text-navy-600 text-sm mb-4 line-clamp-2">{event.description}</p>
+                      <p className="text-[#94A3B8] text-sm mb-4 line-clamp-2">{event.description}</p>
 
                       <div className="space-y-3 mb-6">
-                        <div className="flex items-center gap-3 text-navy-700">
-                          <Calendar size={18} className="text-primary shrink-0" />
+                        <div className="flex items-center gap-3 text-[#94A3B8]">
+                          <Calendar size={16} className="text-violet-400 shrink-0" />
                           <span className="text-sm">{formatDate(event.date)} at {event.time}</span>
                         </div>
-                        <div className="flex items-center gap-3 text-navy-700">
-                          <MapPin size={18} className="text-primary shrink-0" />
+                        <div className="flex items-center gap-3 text-[#94A3B8]">
+                          <MapPin size={16} className="text-violet-400 shrink-0" />
                           <span className="text-sm">{event.location}</span>
                         </div>
-                        <div className="flex items-center gap-3 text-navy-700">
-                          <Users size={18} className="text-primary shrink-0" />
+                        <div className="flex items-center gap-3 text-[#94A3B8]">
+                          <Users size={16} className="text-violet-400 shrink-0" />
                           <span className="text-sm">{event.attendees} attendees</span>
                         </div>
                       </div>
@@ -161,10 +168,10 @@ const Event = () => {
                       <motion.button
                         whileHover={{ x: 5 }}
                         onClick={() => handleEventClick(event)}
-                        className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-blue-600 hover:shadow-lg text-white font-semibold py-2.5 rounded-lg transition-all duration-300"
+                        className="w-full flex items-center justify-center gap-2 btn-primary py-2.5 text-sm"
                       >
                         {isUpcoming(event.date) ? 'Register Now' : 'View Highlights'}
-                        <ChevronRight size={18} />
+                        <ChevronRight size={16} />
                       </motion.button>
                     </div>
                   </motion.div>
@@ -176,8 +183,8 @@ const Event = () => {
                 animate={{ opacity: 1 }}
                 className="text-center py-16"
               >
-                <Calendar size={48} className="mx-auto text-navy-300 mb-4" />
-                <p className="text-navy-600 text-lg">
+                <Calendar size={48} className="mx-auto text-violet-500/30 mb-4" />
+                <p className="text-[#94A3B8] text-lg">
                   {activeTab === 'upcoming' ? 'No upcoming events at the moment.' : 'No past events to display.'}
                 </p>
               </motion.div>

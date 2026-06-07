@@ -7,7 +7,7 @@ const articles = [
   {
     id: 1,
     title: 'Architecting Scalable Multi-Agent AI Systems for Enterprise Operations',
-    summary: 'A deep dive into orchestration frameworks, memory synchronization protocols, and custom retrieval pipelines to eliminate agent hallucinations in high-throughput database networks.',
+    summary: 'A deep dive into orchestration frameworks, memory synchronization protocols, and custom retrieval pipelines to eliminate agent hallucinations in high-throughput environments.',
     content: 'Full article text regarding orchestration details...',
     author: 'Dr. Aris Thorne',
     date: 'May 28, 2026',
@@ -18,7 +18,7 @@ const articles = [
   },
   {
     id: 2,
-    title: 'Deploying Real-Time Telemetry Anomaly Detection in Auto Pipelines',
+    title: 'Deploying Real-Time Telemetry Anomaly Detection in Industrial Pipelines',
     summary: 'How we implemented Time-Series Transformer models to monitor assembly sensors and forecast manufacturing faults 48 hours in advance.',
     author: 'Sarah Jenkins',
     date: 'May 15, 2026',
@@ -29,7 +29,7 @@ const articles = [
   },
   {
     id: 3,
-    title: 'A Guide to Custom Computer Vision Models in Visual Manufacturing QC',
+    title: 'A Practical Guide to Computer Vision Models in Manufacturing QC',
     summary: 'Evaluating YOLO architectures versus custom CNN classifiers for detecting board microfractures on high-speed factory conveyor belts.',
     author: 'David Vance',
     date: 'Apr 22, 2026',
@@ -40,8 +40,8 @@ const articles = [
   },
   {
     id: 4,
-    title: 'Designing Minimalist SaaS User Interfaces for Executive Audits',
-    summary: 'Best practices for implementing glassmorphic cards, Outfit typography, and responsive chart elements to maximize operational intelligence.',
+    title: 'Building Dark-Mode AI Dashboards: Design Principles That Scale',
+    summary: 'Best practices for implementing glass-card UIs, Space Grotesk typography, and responsive Recharts elements to maximize operational intelligence at a glance.',
     author: 'Elena Rostova',
     date: 'Mar 18, 2026',
     readTime: '4 min read',
@@ -112,69 +112,73 @@ const Blog = () => {
     <div className="pt-28 pb-16 px-6 max-w-5xl mx-auto">
       {/* Page Header */}
       <div className="text-center mb-12">
-        <span className="text-primary font-semibold text-sm tracking-wider uppercase">Insights & Analysis</span>
-        <h1 className="font-outfit font-extrabold text-navy-900 text-4xl md:text-5xl mt-1 tracking-tight">
-          Company Blog
+        <span className="text-violet-400 font-grotesk text-xs font-semibold uppercase tracking-widest">Insights & Analysis</span>
+        <h1 className="font-grotesk font-bold text-[#F0F0FF] text-4xl md:text-5xl mt-2 tracking-tight">
+          Company <span className="gradient-text">Blog</span>
         </h1>
-        <p className="text-navy-500 text-base max-w-md mx-auto mt-3">
-          Deep dives into artificial intelligence architectures, UI designs, and system metrics.
+        <p className="text-[#94A3B8] text-base max-w-md mx-auto mt-3">
+          Deep dives into AI architectures, engineering decisions, and system design from our team.
         </p>
       </div>
 
       {/* Search Bar */}
       <div className="max-w-md mx-auto mb-16 relative">
-        <div className="flex bg-white rounded-full p-1 border border-navy-100 focus-within:border-primary shadow-sm shadow-navy-900/5 transition-all">
+        <div className="flex bg-white/[0.05] rounded-xl p-1 border border-white/10 focus-within:border-violet-500/40 transition-all">
           <input
             type="text"
             placeholder="Search articles, topics, authors..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-transparent border-none text-navy-900 text-sm outline-none px-4 py-2 placeholder-navy-400"
+            className="w-full bg-transparent border-none text-[#F0F0FF] text-sm outline-none px-4 py-2 placeholder-[#475569]"
           />
-          <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shrink-0">
-            <Search size={18} />
+          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-violet-600 to-cyan-500 flex items-center justify-center text-white shrink-0">
+            <Search size={16} />
           </div>
         </div>
       </div>
 
-      {/* Articles Display */}
+      {/* Featured Article */}
       {searchQuery === '' && featuredArticle && (
-        /* Featured Section */
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="glass-card rounded-3xl overflow-hidden border border-navy-100 mb-12 hover:shadow-lg transition-all duration-300"
+          className="glass-card rounded-2xl overflow-hidden mb-12"
         >
+          {/* Gradient top border */}
+          <div className="h-px bg-gradient-to-r from-violet-500 to-cyan-400" />
           <div className="grid grid-cols-1 md:grid-cols-2">
-            <div className="bg-navy-950 min-h-[260px]">
+            <div className="bg-[#07070F] min-h-[260px]">
               <img
                 src={featuredArticle.image}
                 alt={featuredArticle.title}
-                className="w-full h-full object-cover opacity-90"
+                className="w-full h-full object-cover opacity-80"
               />
             </div>
             <div className="p-8 md:p-10 flex flex-col justify-between text-left">
               <div>
-                <span className="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-4 uppercase tracking-wider">
+                <span className="inline-block px-3 py-1 bg-violet-500/15 text-violet-300 text-xs font-grotesk font-semibold rounded-full mb-4 uppercase tracking-wider border border-violet-500/25">
                   Featured / {featuredArticle.category}
                 </span>
-                
-                <h2 className="font-outfit font-extrabold text-navy-900 text-2xl md:text-3xl leading-snug mb-4 hover:text-primary transition-colors cursor-pointer" onClick={() => handleArticleClick(featuredArticle)}>
+
+                <h2
+                  className="font-grotesk font-bold text-[#F0F0FF] text-2xl md:text-3xl leading-snug mb-4 hover:text-violet-300 transition-colors cursor-pointer"
+                  onClick={() => handleArticleClick(featuredArticle)}
+                >
                   {featuredArticle.title}
                 </h2>
-                
-                <p className="text-navy-500 text-sm leading-relaxed mb-6">
+
+                <p className="text-[#94A3B8] text-sm leading-relaxed mb-6">
                   {featuredArticle.summary}
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center justify-between gap-4 border-t border-navy-50 pt-4 text-xs text-navy-400">
+              <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/[0.06] pt-4 text-xs text-[#94A3B8]">
                 <div className="flex items-center gap-4">
-                  <span className="flex items-center gap-1"><User size={14} /> {featuredArticle.author}</span>
-                  <span className="flex items-center gap-1"><Calendar size={14} /> {featuredArticle.date}</span>
+                  <span className="flex items-center gap-1"><User size={13} /> {featuredArticle.author}</span>
+                  <span className="flex items-center gap-1"><Calendar size={13} /> {featuredArticle.date}</span>
                 </div>
-                <span className="flex items-center gap-1 font-semibold text-primary"><Clock size={14} /> {featuredArticle.readTime}</span>
+                <span className="flex items-center gap-1 font-grotesk font-semibold text-violet-400"><Clock size={13} /> {featuredArticle.readTime}</span>
               </div>
             </div>
           </div>
@@ -183,12 +187,12 @@ const Blog = () => {
 
       {/* Grid of Other Articles */}
       <div>
-        <h3 className="font-outfit font-bold text-navy-900 text-xl text-left mb-6">
+        <h3 className="font-grotesk font-bold text-[#F0F0FF] text-xl text-left mb-6">
           {searchQuery !== '' ? `Search Results (${filteredArticles.length})` : 'Recent Articles'}
         </h3>
 
         {filteredArticles.length === 0 ? (
-          <div className="py-20 text-center text-navy-400 text-sm">
+          <div className="py-20 text-center text-[#94A3B8] text-sm">
             No articles match your search parameters. Try broadening your keywords.
           </div>
         ) : (
@@ -199,32 +203,35 @@ const Blog = () => {
                 key={art.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="glass-card rounded-3xl overflow-hidden border border-navy-100 flex flex-col justify-between hover:shadow-md transition-shadow"
+                className="glass-card rounded-2xl overflow-hidden flex flex-col justify-between"
               >
-                <div className="relative aspect-video bg-navy-950">
+                <div className="relative aspect-video bg-[#07070F]">
                   <img
                     src={art.image}
                     alt={art.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover opacity-80"
                   />
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-white/95 backdrop-blur-sm rounded-full text-navy-900 text-xs font-bold font-outfit shadow-sm">
+                  <div className="absolute top-4 left-4 px-3 py-1 bg-violet-500/20 backdrop-blur-sm rounded-full text-violet-300 text-xs font-grotesk font-bold border border-violet-500/30">
                     {art.category}
                   </div>
                 </div>
 
                 <div className="p-6 text-left flex flex-col justify-between flex-grow">
                   <div>
-                    <h4 className="font-outfit font-bold text-navy-900 text-lg mb-2 hover:text-primary transition-colors cursor-pointer leading-snug" onClick={() => handleArticleClick(art)}>
+                    <h4
+                      className="font-grotesk font-bold text-[#F0F0FF] text-lg mb-2 hover:text-violet-300 transition-colors cursor-pointer leading-snug"
+                      onClick={() => handleArticleClick(art)}
+                    >
                       {art.title}
                     </h4>
-                    <p className="text-navy-500 text-xs leading-relaxed mb-4 line-clamp-3">
+                    <p className="text-[#94A3B8] text-xs leading-relaxed mb-4 line-clamp-3">
                       {art.summary}
                     </p>
                   </div>
 
-                  <div className="flex items-center justify-between border-t border-navy-50 pt-4 text-[10px] text-navy-400 mt-4">
+                  <div className="flex items-center justify-between border-t border-white/[0.06] pt-4 text-[10px] text-[#94A3B8] mt-4">
                     <span className="flex items-center gap-1"><User size={12} /> {art.author}</span>
-                    <span className="flex items-center gap-1 font-semibold text-primary"><Clock size={12} /> {art.readTime}</span>
+                    <span className="flex items-center gap-1 font-grotesk font-semibold text-violet-400"><Clock size={12} /> {art.readTime}</span>
                   </div>
                 </div>
               </motion.div>

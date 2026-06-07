@@ -3,90 +3,139 @@
 @tailwind utilities;
 
 @layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
-    @apply font-sans bg-[#F8FAFC] text-navy-900 overflow-x-hidden;
+    background-color: #0D0D1A;
+    color: #F0F0FF;
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
-  
-  /* Smooth scroll selection */
-  html {
-    scroll-behavior: smooth;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
   }
+
+  /* Dot grid background pattern */
+  .dot-grid {
+    background-image: radial-gradient(circle, rgba(124,58,237,0.15) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0D0D1A; }
+  ::-webkit-scrollbar-thumb { background: rgba(124,58,237,0.4); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(124,58,237,0.7); }
+
+  /* Text selection */
+  ::selection { background: rgba(124,58,237,0.35); color: #F0F0FF; }
 }
 
 @layer components {
-  /* Glassmorphism Styles */
-  .glass-nav {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-  }
-  
+  /* Glass card */
   .glass-card {
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
   }
-  
-  .glass-card-dark {
-    background: rgba(15, 23, 42, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+  .glass-card:hover {
+    border-color: rgba(124,58,237,0.35);
+    box-shadow: 0 0 40px rgba(124,58,237,0.1);
   }
-  
-  /* Buttons */
+
+  /* Nav glass */
+  .glass-nav {
+    background: rgba(13,13,26,0.8);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(124,58,237,0.15);
+  }
+
+  /* Primary button */
   .btn-primary {
-    @apply px-6 py-3 bg-primary text-white font-medium rounded-full shadow-lg shadow-blue-500/20 hover:bg-primary-dark hover:shadow-blue-500/35 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer;
+    background: linear-gradient(135deg, #7C3AED 0%, #06B6D4 100%);
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    padding: 0.75rem 1.75rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
   }
-  
+  .btn-primary:hover {
+    box-shadow: 0 0 30px rgba(124,58,237,0.5);
+    transform: translateY(-1px);
+  }
+
+  /* Secondary button */
   .btn-secondary {
-    @apply px-6 py-3 bg-white text-navy-900 border border-navy-200 font-medium rounded-full hover:bg-navy-50 hover:border-navy-300 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer;
+    background: transparent;
+    color: #F0F0FF;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    padding: 0.75rem 1.75rem;
+    border-radius: 12px;
+    border: 1px solid rgba(124,58,237,0.4);
+    cursor: pointer;
+    transition: all 0.3s;
   }
-  
+  .btn-secondary:hover {
+    background: rgba(124,58,237,0.1);
+    border-color: rgba(124,58,237,0.7);
+    box-shadow: 0 0 20px rgba(124,58,237,0.2);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #a78bfa 0%, #06D6D6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Section divider */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(124,58,237,0.4), transparent);
+  }
+
+  /* Glow orb decorations */
+  .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+
+  /* Admin button */
   .btn-admin {
-    @apply px-5 py-2.5 bg-navy-900 text-white font-medium rounded-lg hover:bg-navy-800 transition-all duration-300 cursor-pointer;
+    background: linear-gradient(135deg, #7C3AED, #06B6D4);
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
   }
-}
+  .btn-admin:hover {
+    box-shadow: 0 0 20px rgba(124,58,237,0.4);
+    transform: translateY(-1px);
+  }
 
-/* Animations */
-@keyframes float {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-15px) rotate(3deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
-}
+  /* Float animations */
+  @keyframes float-slow   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+  @keyframes float-medium { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)}  }
+  @keyframes float-fast   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)}  }
 
-.animate-float-slow {
-  animation: float 8s ease-in-out infinite;
-}
-
-.animate-float-medium {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-fast {
-  animation: float 4s ease-in-out infinite;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #F1F5F9;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  .animate-float-slow   { animation: float-slow   6s ease-in-out infinite; }
+  .animate-float-medium { animation: float-medium 4s ease-in-out infinite; }
+  .animate-float-fast   { animation: float-fast   3s ease-in-out infinite; }
 }
 
 /* Hide default Vite page styles root container override */
@@ -99,4 +148,3 @@
   min-height: auto !important;
   margin: 0 !important;
 }
-

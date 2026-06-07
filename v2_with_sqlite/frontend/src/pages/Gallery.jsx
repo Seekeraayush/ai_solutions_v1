@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Image, Layers, Compass, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import api from '../services/api';
 import ImageLightbox from '../components/ImageLightbox';
 
@@ -44,7 +44,6 @@ const Gallery = () => {
         if (response.data && response.data.length > 0) {
           setItems(response.data);
         } else {
-          // If server is empty, default to static assets
           setItems(staticGalleryItems);
         }
       } catch (error) {
@@ -65,11 +64,11 @@ const Gallery = () => {
     <div className="pt-28 pb-16 px-6 max-w-5xl mx-auto">
       {/* Page Header */}
       <div className="text-center mb-12">
-        <span className="text-primary font-semibold text-sm tracking-wider uppercase">Visual Records</span>
-        <h1 className="font-outfit font-extrabold text-navy-900 text-4xl md:text-5xl mt-1 tracking-tight">
-          Company Gallery
+        <span className="text-violet-400 font-grotesk text-xs font-semibold uppercase tracking-widest">Visual Records</span>
+        <h1 className="font-grotesk font-bold text-[#F0F0FF] text-4xl md:text-5xl mt-2 tracking-tight">
+          Company <span className="gradient-text">Gallery</span>
         </h1>
-        <p className="text-navy-500 text-base max-w-md mx-auto mt-3">
+        <p className="text-[#94A3B8] text-base max-w-md mx-auto mt-3">
           A visual look inside our events, office workspaces, and client sessions.
         </p>
       </div>
@@ -85,10 +84,10 @@ const Gallery = () => {
           <button
             key={tab.key}
             onClick={() => setFilter(tab.key)}
-            className={`px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
+            className={`px-5 py-2 rounded-full text-xs font-grotesk font-semibold uppercase tracking-wider transition-all cursor-pointer ${
               filter === tab.key
-                ? 'bg-primary text-white shadow-md shadow-blue-500/10'
-                : 'bg-white text-navy-700 border border-navy-100 hover:bg-navy-50'
+                ? 'bg-gradient-to-r from-violet-600 to-cyan-500 text-white shadow-glow-sm'
+                : 'bg-white/[0.05] text-[#94A3B8] border border-white/10 hover:border-violet-500/40 hover:text-[#F0F0FF]'
             }`}
           >
             {tab.label}
@@ -98,12 +97,11 @@ const Gallery = () => {
 
       {/* Loading state */}
       {loading ? (
-        <div className="flex flex-col items-center justify-center py-20 text-navy-400 gap-2">
-          <Loader2 size={32} className="animate-spin text-primary" />
-          <span className="text-xs font-semibold uppercase tracking-widest">Loading visual records...</span>
+        <div className="flex flex-col items-center justify-center py-20 text-[#94A3B8] gap-2">
+          <Loader2 size={32} className="animate-spin text-violet-400" />
+          <span className="text-xs font-grotesk font-semibold uppercase tracking-widest">Loading visual records...</span>
         </div>
       ) : (
-        /* Masonry-style grid layout */
         <motion.div
           layout
           className="columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6"
@@ -118,9 +116,8 @@ const Gallery = () => {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4 }}
                 onClick={() => setSelectedItem(item)}
-                className="break-inside-avoid bg-white rounded-3xl overflow-hidden border border-navy-100 hover:shadow-lg group transition-all duration-300 cursor-zoom-in relative"
+                className="break-inside-avoid glass-card rounded-2xl overflow-hidden hover:border-violet-500/40 hover:shadow-glow group transition-all duration-300 cursor-zoom-in relative"
               >
-                {/* Image */}
                 <img
                   src={item.image.startsWith('http') ? item.image : `http://localhost:8000${item.image}`}
                   alt={item.title}
@@ -128,12 +125,11 @@ const Gallery = () => {
                   loading="lazy"
                 />
 
-                {/* Hover Details Panel */}
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end text-left text-white pointer-events-none">
-                  <span className="text-[10px] font-extrabold uppercase tracking-wider bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded-full w-max mb-2">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07070F]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end text-left text-white pointer-events-none">
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider bg-violet-500/20 backdrop-blur-sm px-2 py-0.5 rounded-full w-max mb-2 border border-violet-500/30 text-violet-300">
                     {item.category_display || item.category}
                   </span>
-                  <h4 className="font-outfit font-bold text-sm md:text-base leading-tight">
+                  <h4 className="font-grotesk font-bold text-sm md:text-base leading-tight text-[#F0F0FF]">
                     {item.title}
                   </h4>
                 </div>

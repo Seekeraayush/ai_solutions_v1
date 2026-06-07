@@ -8,7 +8,7 @@ import {
   Image as ImageIcon,
   Calendar,
   Star,
-  Sparkles,
+  Zap,
   LogOut,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -45,15 +45,15 @@ const AdminDashboard = () => {
   }, [isAuthenticated, authLoading, navigate]);
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans">
+    <div className="min-h-screen bg-[#0D0D1A] font-sans">
       {/* Header */}
-      <header className="sticky top-0 z-40 bg-white/80 backdrop-blur border-b border-slate-200">
+      <header className="sticky top-0 z-40 bg-[#07070F]/90 backdrop-blur border-b border-violet-500/20">
         <div className="max-w-7xl mx-auto px-6 py-3.5 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center">
-              <Sparkles size={16} className="text-white" />
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-cyan-500 flex items-center justify-center shadow-glow-sm">
+              <Zap size={16} className="text-white" />
             </div>
-            <span className="font-outfit font-bold text-slate-900 text-lg tracking-tight">
+            <span className="font-grotesk font-bold text-[#F0F0FF] text-lg tracking-tight">
               Admin Portal
             </span>
           </div>
@@ -66,10 +66,10 @@ const AdminDashboard = () => {
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
-                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-grotesk font-semibold transition-all cursor-pointer ${
                     active
-                      ? "bg-blue-600 text-white shadow-sm"
-                      : "text-slate-600 hover:bg-slate-100"
+                      ? "bg-gradient-to-r from-violet-600 to-cyan-500 text-white shadow-glow-sm"
+                      : "text-[#94A3B8] hover:bg-white/[0.06] hover:text-[#F0F0FF]"
                   }`}
                 >
                   <Icon size={13} />
@@ -84,7 +84,7 @@ const AdminDashboard = () => {
               logout();
               navigate("/");
             }}
-            className="flex items-center gap-1.5 px-4 py-1.5 rounded-xl border border-red-200 text-red-600 text-xs font-semibold hover:bg-red-50 transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-xl border border-red-500/30 text-red-400 text-xs font-grotesk font-semibold hover:bg-red-500/10 transition-colors cursor-pointer"
           >
             <LogOut size={13} /> Logout
           </button>
@@ -99,10 +99,10 @@ const AdminDashboard = () => {
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-grotesk font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   active
-                    ? "bg-blue-600 text-white"
-                    : "text-slate-600 bg-slate-100"
+                    ? "bg-gradient-to-r from-violet-600 to-cyan-500 text-white"
+                    : "text-[#94A3B8] bg-white/[0.05]"
                 }`}
               >
                 <Icon size={12} />

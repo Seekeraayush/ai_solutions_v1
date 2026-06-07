@@ -12,9 +12,7 @@ import {
   Mail,
   Image as ImageIcon,
   Calendar,
-  Zap,
   Star,
-  CheckCircle2,
   Eye,
   Loader2,
 } from "lucide-react";
@@ -28,25 +26,25 @@ const STAT_CARDS = [
     label: "Total Inquiries",
     key: "total_inquiries",
     icon: Mail,
-    ring: "bg-blue-50 text-blue-600",
+    ring: "bg-violet-500/15 text-violet-400",
   },
   {
     label: "Gallery Items",
     key: "total_gallery_items",
     icon: ImageIcon,
-    ring: "bg-indigo-50 text-indigo-600",
+    ring: "bg-indigo-500/15 text-indigo-400",
   },
   {
     label: "Events",
     key: "total_events",
     icon: Calendar,
-    ring: "bg-pink-50 text-pink-600",
+    ring: "bg-pink-500/15 text-pink-400",
   },
   {
     label: "Testimonials",
     key: "total_testimonials",
     icon: Star,
-    ring: "bg-violet-50 text-violet-600",
+    ring: "bg-cyan-500/15 text-cyan-400",
   },
 ];
 
@@ -56,9 +54,9 @@ const OverviewTab = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center py-32 gap-3 text-slate-400">
-        <Loader2 size={28} className="animate-spin text-blue-500" />
-        <p className="text-xs font-semibold uppercase tracking-widest">
+      <div className="flex flex-col items-center justify-center py-32 gap-3 text-[#94A3B8]">
+        <Loader2 size={28} className="animate-spin text-violet-400" />
+        <p className="text-xs font-grotesk font-semibold uppercase tracking-widest">
           Loading…
         </p>
       </div>
@@ -79,22 +77,20 @@ const OverviewTab = () => {
               transition={{ delay: i * 0.07 }}
             >
               <Card className="p-5 flex flex-col gap-3">
-                <div
-                  className={`w-9 h-9 rounded-xl flex items-center justify-center ${s.ring}`}
-                >
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${s.ring}`}>
                   <Icon size={17} />
                 </div>
                 <div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-[#64748B] mb-0.5 font-grotesk">
                     {s.label}
                   </p>
                   {s.isStatus ? (
-                    <p className="font-outfit font-bold text-emerald-600 text-sm flex items-center gap-1">
+                    <p className="font-grotesk font-bold text-emerald-400 text-sm flex items-center gap-1">
                       <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse inline-block" />
                       Live
                     </p>
                   ) : (
-                    <p className="font-outfit font-extrabold text-slate-900 text-2xl">
+                    <p className="font-grotesk font-extrabold text-[#F0F0FF] text-2xl">
                       {stats[s.key] ?? 0}
                     </p>
                   )}
@@ -108,10 +104,10 @@ const OverviewTab = () => {
       {/* Chart + Recent Inquiries */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="p-6 md:col-span-2">
-          <h3 className="font-outfit font-bold text-slate-900 text-sm mb-0.5">
+          <h3 className="font-grotesk font-bold text-[#F0F0FF] text-sm mb-0.5">
             Inquiry Activity — Last 7 Days
           </h3>
-          <p className="text-slate-400 text-xs mb-5">
+          <p className="text-[#94A3B8] text-xs mb-5">
             Submission volume by day.
           </p>
           <div className="h-56">
@@ -119,23 +115,23 @@ const OverviewTab = () => {
               <AreaChart data={stats.inquiry_trend || []}>
                 <defs>
                   <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#2563EB" stopOpacity={0.18} />
-                    <stop offset="95%" stopColor="#2563EB" stopOpacity={0} />
+                    <stop offset="5%" stopColor="#7C3AED" stopOpacity={0.25} />
+                    <stop offset="95%" stopColor="#7C3AED" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid
                   strokeDasharray="3 3"
                   vertical={false}
-                  stroke="#E2E8F0"
+                  stroke="rgba(255,255,255,0.06)"
                 />
                 <XAxis
                   dataKey="date"
-                  stroke="#94A3B8"
+                  stroke="rgba(255,255,255,0.2)"
                   fontSize={10}
                   tickLine={false}
                 />
                 <YAxis
-                  stroke="#94A3B8"
+                  stroke="rgba(255,255,255,0.2)"
                   fontSize={10}
                   tickLine={false}
                   axisLine={false}
@@ -144,7 +140,9 @@ const OverviewTab = () => {
                 <Tooltip
                   contentStyle={{
                     borderRadius: "12px",
-                    border: "1px solid #E2E8F0",
+                    border: "1px solid rgba(124,58,237,0.3)",
+                    background: "#1A1A2E",
+                    color: "#F0F0FF",
                     fontSize: 12,
                   }}
                 />
@@ -152,7 +150,7 @@ const OverviewTab = () => {
                   type="monotone"
                   dataKey="count"
                   name="Inquiries"
-                  stroke="#2563EB"
+                  stroke="#7C3AED"
                   strokeWidth={2.5}
                   fill="url(#grad)"
                 />
@@ -162,34 +160,34 @@ const OverviewTab = () => {
         </Card>
 
         <Card className="p-6">
-          <h3 className="font-outfit font-bold text-slate-900 text-sm mb-0.5">
+          <h3 className="font-grotesk font-bold text-[#F0F0FF] text-sm mb-0.5">
             Recent Inquiries
           </h3>
-          <p className="text-slate-400 text-xs mb-4">
+          <p className="text-[#94A3B8] text-xs mb-4">
             Latest incoming client requests.
           </p>
           <div className="flex flex-col gap-2.5">
             {(stats.recent_inquiries || []).length === 0 ? (
-              <p className="text-slate-400 text-xs py-6 text-center">
+              <p className="text-[#94A3B8] text-xs py-6 text-center">
                 No inquiries yet.
               </p>
             ) : (
               (stats.recent_inquiries || []).map((inc) => (
                 <div
                   key={inc.id}
-                  className="flex items-center justify-between p-3 bg-slate-50 rounded-2xl border border-slate-100"
+                  className="flex items-center justify-between p-3 bg-white/[0.03] rounded-2xl border border-white/[0.06]"
                 >
                   <div className="overflow-hidden mr-2">
-                    <p className="font-outfit font-bold text-slate-900 text-xs truncate">
+                    <p className="font-grotesk font-bold text-[#F0F0FF] text-xs truncate">
                       {inc.full_name}
                     </p>
-                    <p className="text-[10px] text-slate-400 truncate">
+                    <p className="text-[10px] text-[#94A3B8] truncate">
                       {inc.company_name} · {inc.country}
                     </p>
                   </div>
                   <button
                     onClick={() => setSelectedInquiry(inc)}
-                    className="p-1.5 text-blue-500 hover:bg-blue-50 rounded-lg transition-colors cursor-pointer shrink-0"
+                    className="p-1.5 text-violet-400 hover:bg-violet-500/15 rounded-lg transition-colors cursor-pointer shrink-0"
                   >
                     <Eye size={13} />
                   </button>

@@ -1,41 +1,32 @@
-/** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        navy: {
-          50: '#f4f6fa',
-          100: '#e8ecf4',
-          200: '#c6d1e4',
-          300: '#94aacb',
-          400: '#5c7bab',
-          500: '#3d598b',
-          600: '#2e4571',
-          700: '#26375d',
-          800: '#1d2745',
-          900: '#0F172A', // Deep navy / Near-black
-          950: '#0B0F19', // Executive dark
+        bg: {
+          deep:     '#07070F',
+          base:     '#0D0D1A',
+          card:     '#12121F',
+          elevated: '#1A1A2E',
         },
-        primary: {
-          DEFAULT: '#2563EB', // Royal Blue
-          dark: '#1D4ED8',
-          light: '#3B82F6',
-        }
+        violet: { DEFAULT: '#7C3AED', light: '#8B5CF6', dark: '#6D28D9' },
+        cyan:   { DEFAULT: '#06D6D6', light: '#22D3EE', dark: '#0891B2' },
+        border: { subtle: 'rgba(124,58,237,0.2)', bright: 'rgba(124,58,237,0.5)' },
       },
       fontFamily: {
-        sans: ['Outfit', 'Inter', 'sans-serif'],
+        grotesk: ['Space Grotesk', 'sans-serif'],
+        sans:    ['DM Sans', 'sans-serif'],
       },
       boxShadow: {
-        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
-        'glass-hover': '0 12px 40px 0 rgba(31, 38, 135, 0.12)',
+        glow:       '0 0 40px rgba(124,58,237,0.25)',
+        'glow-sm':  '0 0 20px rgba(124,58,237,0.15)',
+        'glow-cyan':'0 0 40px rgba(6,214,214,0.2)',
+      },
+      backgroundImage: {
+        'gradient-brand': 'linear-gradient(135deg, #7C3AED 0%, #06D6D6 100%)',
+        'gradient-card':  'linear-gradient(135deg, rgba(124,58,237,0.08) 0%, rgba(6,214,214,0.04) 100%)',
       }
     },
   },
   plugins: [],
 }
-
-

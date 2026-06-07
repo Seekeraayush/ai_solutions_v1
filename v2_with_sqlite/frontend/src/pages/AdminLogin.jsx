@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { ROUTES } from "../constants/routes";
-import { Lock, User, Loader2, Cpu, AlertCircle } from "lucide-react";
+import { Lock, User, Loader2, Zap, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 const AdminLogin = () => {
@@ -13,7 +13,6 @@ const AdminLogin = () => {
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  // Redirect if already logged in
   useEffect(() => {
     if (isAuthenticated) {
       navigate(ROUTES.ADMIN_DASHBOARD);
@@ -41,27 +40,30 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-6 pt-24 pb-12 relative overflow-hidden bg-slate-50">
+    <div className="min-h-screen flex items-center justify-center px-6 pt-24 pb-12 relative overflow-hidden bg-[#0D0D1A] dot-grid">
+      {/* Glow orb */}
+      <div className="glow-orb w-[500px] h-[500px] bg-violet-600/15 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="max-w-md w-full glass-card p-8 md:p-10 rounded-3xl border border-navy-100 shadow-xl bg-white/80 z-10"
+        className="max-w-sm w-full glass-card p-8 md:p-10 rounded-2xl hover:border-violet-500/30 hover:shadow-glow z-10"
       >
         <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white mb-3 shadow-lg shadow-blue-500/20">
-            <Cpu size={24} />
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-600 to-cyan-500 flex items-center justify-center shadow-glow-sm mb-3">
+            <Zap size={22} className="text-white" />
           </div>
-          <h1 className="font-outfit font-extrabold text-2xl text-navy-900 tracking-tight">
-            Admin Access
+          <h1 className="font-grotesk font-bold text-xl text-[#F0F0FF] tracking-tight">
+            AI-Solutions
           </h1>
-          <p className="text-navy-500 text-xs mt-1">
-            Sign in to manage inquiries and gallery items.
-          </p>
+          <span className="mt-1 px-3 py-0.5 bg-violet-500/15 text-violet-300 text-[10px] font-grotesk font-bold uppercase tracking-widest rounded-full border border-violet-500/25">
+            Admin Portal
+          </span>
         </div>
 
         {error && (
-          <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-700 text-sm flex items-center gap-2 text-left">
+          <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm flex items-center gap-2 text-left">
             <AlertCircle size={16} className="shrink-0" />
             <span>{error}</span>
           </div>
@@ -70,17 +72,17 @@ const AdminLogin = () => {
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-left">
           {/* Username */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-bold text-navy-800 uppercase tracking-wider">
+            <label className="text-[#94A3B8] font-grotesk text-xs uppercase tracking-widest font-semibold">
               Username
             </label>
-            <div className="flex items-center bg-white border border-navy-150 rounded-xl px-4 py-3 shadow-inner focus-within:border-primary transition-all">
-              <User size={16} className="text-navy-400 mr-2 shrink-0" />
+            <div className="flex items-center bg-white/[0.05] border border-white/10 rounded-xl px-4 py-3 focus-within:border-violet-500/60 focus-within:ring-2 focus-within:ring-violet-500/20 transition-all">
+              <User size={16} className="text-[#94A3B8] mr-2 shrink-0" />
               <input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="e.g. admin"
-                className="w-full bg-transparent border-none text-navy-900 text-sm outline-none placeholder-navy-300"
+                className="w-full bg-transparent border-none text-[#F0F0FF] text-sm outline-none placeholder-[#475569]"
                 required
               />
             </div>
@@ -88,17 +90,17 @@ const AdminLogin = () => {
 
           {/* Password */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs font-bold text-navy-800 uppercase tracking-wider">
+            <label className="text-[#94A3B8] font-grotesk text-xs uppercase tracking-widest font-semibold">
               Password
             </label>
-            <div className="flex items-center bg-white border border-navy-150 rounded-xl px-4 py-3 shadow-inner focus-within:border-primary transition-all">
-              <Lock size={16} className="text-navy-400 mr-2 shrink-0" />
+            <div className="flex items-center bg-white/[0.05] border border-white/10 rounded-xl px-4 py-3 focus-within:border-violet-500/60 focus-within:ring-2 focus-within:ring-violet-500/20 transition-all">
+              <Lock size={16} className="text-[#94A3B8] mr-2 shrink-0" />
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full bg-transparent border-none text-navy-900 text-sm outline-none placeholder-navy-300"
+                className="w-full bg-transparent border-none text-[#F0F0FF] text-sm outline-none placeholder-[#475569]"
                 required
               />
             </div>
@@ -107,7 +109,7 @@ const AdminLogin = () => {
           <button
             type="submit"
             disabled={loading}
-            className="btn-primary py-3.5 mt-4 text-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+            className="btn-primary py-3.5 mt-4 text-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 w-full"
           >
             {loading ? (
               <>
@@ -120,9 +122,6 @@ const AdminLogin = () => {
           </button>
         </form>
       </motion.div>
-
-      {/* Background decoration */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full filter blur-3xl -z-10 pointer-events-none" />
     </div>
   );
 };

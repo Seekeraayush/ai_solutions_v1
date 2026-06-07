@@ -17,14 +17,12 @@ const ParticleBackground = () => {
     const maxParticles = 60;
     const connectionDistance = 120;
 
-    // Handle Resize
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
     };
     window.addEventListener('resize', handleResize);
 
-    // Particle Class
     class Particle {
       constructor() {
         this.x = Math.random() * width;
@@ -32,13 +30,14 @@ const ParticleBackground = () => {
         this.vx = (Math.random() - 0.5) * 0.4;
         this.vy = (Math.random() - 0.5) * 0.4;
         this.radius = Math.random() * 2 + 1;
+        // Randomly pick violet or cyan
+        this.isViolet = Math.random() > 0.5;
       }
 
       update() {
         this.x += this.vx;
         this.y += this.vy;
 
-        // Boundary bounce
         if (this.x < 0 || this.x > width) this.vx = -this.vx;
         if (this.y < 0 || this.y > height) this.vy = -this.vy;
       }
@@ -46,27 +45,25 @@ const ParticleBackground = () => {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(37, 99, 235, 0.25)'; // Light blue
+        ctx.fillStyle = this.isViolet
+          ? 'rgba(124, 58, 237, 0.4)'
+          : 'rgba(6, 214, 214, 0.35)';
         ctx.fill();
       }
     }
 
-    // Initialize Particles
     for (let i = 0; i < maxParticles; i++) {
       particles.push(new Particle());
     }
 
-    // Animation Loop
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Update and Draw Particles
       particles.forEach((p) => {
         p.update();
         p.draw();
       });
 
-      // Draw Connection Lines
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -78,7 +75,7 @@ const ParticleBackground = () => {
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
             const alpha = (1 - dist / connectionDistance) * 0.12;
-            ctx.strokeStyle = `rgba(37, 99, 235, ${alpha})`;
+            ctx.strokeStyle = `rgba(124, 58, 237, ${alpha})`;
             ctx.lineWidth = 1;
             ctx.stroke();
           }

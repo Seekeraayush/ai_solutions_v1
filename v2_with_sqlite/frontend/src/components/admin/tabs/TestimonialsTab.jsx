@@ -16,9 +16,9 @@ const TestimonialsTab = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center py-32 gap-3 text-slate-400">
-        <Loader2 size={28} className="animate-spin text-blue-500" />
-        <p className="text-xs font-semibold uppercase tracking-widest">Loading…</p>
+      <div className="flex flex-col items-center justify-center py-32 gap-3 text-[#94A3B8]">
+        <Loader2 size={28} className="animate-spin text-violet-400" />
+        <p className="text-xs font-grotesk font-semibold uppercase tracking-widest">Loading…</p>
       </div>
     );
   }
@@ -39,26 +39,26 @@ const TestimonialsTab = () => {
                 <img
                   src={t.image?.startsWith('http') ? t.image : `http://localhost:8000${t.image}`}
                   alt={t.name}
-                  className="w-11 h-11 rounded-full object-cover border-2 border-slate-100 shrink-0"
+                  className="w-11 h-11 rounded-full object-cover border-2 border-violet-500/30 shrink-0"
                 />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <p className="font-outfit font-bold text-slate-900 text-sm">{t.name}</p>
-                      <p className="text-xs text-slate-400 flex items-center gap-1"><Building2 size={10} />{t.company}</p>
+                      <p className="font-grotesk font-bold text-[#F0F0FF] text-sm">{t.name}</p>
+                      <p className="text-xs text-violet-400 flex items-center gap-1"><Building2 size={10} />{t.company}</p>
                     </div>
                     <ItemActions onEdit={() => openEdit(t)} onDelete={() => handleDelete(t.id)} />
                   </div>
-                  <p className="text-slate-600 text-xs mt-2 line-clamp-3">{t.content}</p>
+                  <p className="text-[#94A3B8] text-xs mt-2 line-clamp-3">{t.content}</p>
                   <div className="flex items-center gap-1 mt-2">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star
                         key={i}
                         size={12}
-                        className={i < t.rating ? 'text-amber-400 fill-amber-400' : 'text-slate-200 fill-slate-200'}
+                        className={i < t.rating ? 'text-amber-400 fill-amber-400' : 'text-white/10 fill-white/10'}
                       />
                     ))}
-                    <span className="text-[10px] text-slate-400 ml-1">({t.rating}/5)</span>
+                    <span className="text-[10px] text-[#94A3B8] ml-1">({t.rating}/5)</span>
                   </div>
                 </div>
               </div>

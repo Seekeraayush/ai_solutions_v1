@@ -14,6 +14,9 @@ const EMPTY_FORM = {
   job_details: '',
 };
 
+const inputCls = 'w-full bg-white/[0.05] border border-white/10 rounded-xl px-4 py-3 text-sm text-[#F0F0FF] outline-none focus:border-violet-500/60 focus:ring-2 focus:ring-violet-500/20 transition placeholder-[#475569]';
+const labelCls = 'text-[#94A3B8] font-grotesk text-xs uppercase tracking-widest font-semibold';
+
 const Contact = () => {
   const [formData, setFormData] = useState(EMPTY_FORM);
   const [loading, setLoading] = useState(false);
@@ -48,18 +51,19 @@ const Contact = () => {
   };
 
   return (
-    <div className="pt-28 pb-16 px-6 max-w-3xl mx-auto relative">
+    <div className="pt-28 pb-16 px-6 max-w-3xl mx-auto relative dot-grid min-h-screen">
+
+      {/* Glow orb */}
+      <div className="glow-orb w-[400px] h-[400px] bg-violet-600/15 top-0 left-1/2 -translate-x-1/2" />
 
       {/* Page Header */}
-      <div className="text-center mb-12">
-        <span className="text-primary font-semibold text-sm tracking-wider uppercase flex items-center justify-center gap-1.5">
-          Partner with Us
-        </span>
-        <h1 className="font-outfit font-extrabold text-navy-900 text-4xl md:text-5xl mt-1 tracking-tight">
-          Book Consultation
+      <div className="text-center mb-12 relative z-10">
+        <span className="text-violet-400 font-grotesk text-xs font-semibold uppercase tracking-widest">Partner with Us</span>
+        <h1 className="font-grotesk font-bold text-[#F0F0FF] text-4xl md:text-5xl mt-2 tracking-tight">
+          Let's Build Something <span className="gradient-text">Exceptional</span>
         </h1>
-        <p className="text-navy-500 text-base max-w-md mx-auto mt-3">
-          Coordinate an engineering audit of your workflows with our AI advisors.
+        <p className="text-[#94A3B8] text-base max-w-md mx-auto mt-3">
+          Tell us about your project. We'll respond within 24 hours.
         </p>
       </div>
 
@@ -68,32 +72,32 @@ const Contact = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="glass-card p-8 md:p-10 rounded-3xl border border-navy-100 shadow-xl shadow-navy-950/5 relative overflow-hidden bg-white/70"
+        className="glass-card p-8 md:p-10 rounded-2xl relative z-10 hover:border-violet-500/30 hover:shadow-glow"
       >
         <form onSubmit={handleSubmit} className="flex flex-col gap-6 text-left">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="full_name" className="text-xs font-bold text-navy-800 uppercase tracking-wider">
-                Full Name <span className="text-primary">*</span>
+              <label htmlFor="full_name" className={labelCls}>
+                Full Name <span className="text-violet-400">*</span>
               </label>
               <input
                 type="text" id="full_name" name="full_name"
                 value={formData.full_name} onChange={handleChange}
                 placeholder="e.g. Bob Smith"
-                className="w-full bg-white/50 border border-navy-150 rounded-xl px-4 py-3 text-sm text-navy-900 outline-none focus:border-primary focus:bg-white transition-all shadow-inner"
+                className={inputCls}
                 required
               />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="email" className="text-xs font-bold text-navy-800 uppercase tracking-wider">
-                Email Address <span className="text-primary">*</span>
+              <label htmlFor="email" className={labelCls}>
+                Email Address <span className="text-violet-400">*</span>
               </label>
               <input
                 type="email" id="email" name="email"
                 value={formData.email} onChange={handleChange}
                 placeholder="e.g. bob@innovate.io"
-                className="w-full bg-white/50 border border-navy-150 rounded-xl px-4 py-3 text-sm text-navy-900 outline-none focus:border-primary focus:bg-white transition-all shadow-inner"
+                className={inputCls}
                 required
               />
             </div>
@@ -101,26 +105,26 @@ const Contact = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="phone_number" className="text-xs font-bold text-navy-800 uppercase tracking-wider">
+              <label htmlFor="phone_number" className={labelCls}>
                 Phone Number
               </label>
               <input
                 type="tel" id="phone_number" name="phone_number"
                 value={formData.phone_number} onChange={handleChange}
                 placeholder="e.g. +977980123456"
-                className="w-full bg-white/50 border border-navy-150 rounded-xl px-4 py-3 text-sm text-navy-900 outline-none focus:border-primary focus:bg-white transition-all shadow-inner"
+                className={inputCls}
               />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="company_name" className="text-xs font-bold text-navy-800 uppercase tracking-wider">
-                Company Name <span className="text-primary">*</span>
+              <label htmlFor="company_name" className={labelCls}>
+                Company Name <span className="text-violet-400">*</span>
               </label>
               <input
                 type="text" id="company_name" name="company_name"
                 value={formData.company_name} onChange={handleChange}
                 placeholder="e.g. Innovate LLC"
-                className="w-full bg-white/50 border border-navy-150 rounded-xl px-4 py-3 text-sm text-navy-900 outline-none focus:border-primary focus:bg-white transition-all shadow-inner"
+                className={inputCls}
                 required
               />
             </div>
@@ -128,40 +132,40 @@ const Contact = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="country" className="text-xs font-bold text-navy-800 uppercase tracking-wider">
+              <label htmlFor="country" className={labelCls}>
                 Country
               </label>
               <input
                 type="text" id="country" name="country"
                 value={formData.country} onChange={handleChange}
                 placeholder="e.g. Nepal"
-                className="w-full bg-white/50 border border-navy-150 rounded-xl px-4 py-3 text-sm text-navy-900 outline-none focus:border-primary focus:bg-white transition-all shadow-inner"
+                className={inputCls}
               />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="job_title" className="text-xs font-bold text-navy-800 uppercase tracking-wider">
+              <label htmlFor="job_title" className={labelCls}>
                 Job Title
               </label>
               <input
                 type="text" id="job_title" name="job_title"
                 value={formData.job_title} onChange={handleChange}
                 placeholder="e.g. VP of AI Strategy"
-                className="w-full bg-white/50 border border-navy-150 rounded-xl px-4 py-3 text-sm text-navy-900 outline-none focus:border-primary focus:bg-white transition-all shadow-inner"
+                className={inputCls}
               />
             </div>
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="job_details" className="text-xs font-bold text-navy-800 uppercase tracking-wider">
-              Project Requirements & Details <span className="text-primary">*</span>
+            <label htmlFor="job_details" className={labelCls}>
+              Project Requirements & Details <span className="text-violet-400">*</span>
             </label>
             <textarea
               id="job_details" name="job_details"
               value={formData.job_details} onChange={handleChange}
               rows={4}
               placeholder="Please describe the machine learning workflows, chatbot capabilities, or visual models you require..."
-              className="w-full bg-white/50 border border-navy-150 rounded-xl px-4 py-3 text-sm text-navy-900 outline-none focus:border-primary focus:bg-white transition-all resize-none shadow-inner"
+              className={`${inputCls} resize-none`}
               required
             />
           </div>
